@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>importOK Javascript Example</title>
+</head>
+<body>
+  <div id="import-wizard" style="margin: 2rem;">
+  </div>
+  <script type="module">
+    import ImportOK from './node_modules/@importok/javascript/dist/importok.js';
+    window.onload = function () {
+      ImportOK.add(
+        document.getElementById('import-wizard'),
+        {
+          fields: {
+            first_name: {
+              label: 'First Name',
+              transformers: 'capitalize|trim'
+            },
+            last_name: {
+              label: 'Last Name',
+              validators: 'required',
+              transformers: 'capitalize|trim'
+            },
+            email: {
+              label: 'Email',
+              validators: 'email|required',
+              transformers: 'lowercase|trim'
+            },
+            phone: {
+              label: 'Phone',
+              validators: 'phone',
+              transformers: 'trim'
+            }
+          },
+          meta: {
+            user_id: 1,
+          },
+          onRecordReady: async function (record, meta) {
+            return await fetch('https://httpstat.us/200');
+          }
+        }
+      );
+    }
+  </script>
+</body>
+</html>
