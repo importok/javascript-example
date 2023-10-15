@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "ImportOK Example Project with Vanilla Javascript",
   "main": "index.js",
-
   "author": "",
   "license": "ISC",
   "dependencies": {
