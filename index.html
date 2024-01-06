@@ -34,9 +34,10 @@
             phone: {
               label: 'Phone',
               validators: 'phone',
-              transformers: 'trim'
+              transformers: 'replace:-|trim'
             }
           },
+          sample_file: '/sample.csv',
           meta: {
             user_id: 1,
           },
