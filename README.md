@@ -8,5 +8,5 @@ Execute the following commands to install the dependencies. Then you can visit [
 
 ```
 npm install
-npm start
+npm run start
 ```
