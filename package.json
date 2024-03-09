@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@importok/javascript": "^0.9"
+    "@importok/javascript": "^0.10"
   },
   "scripts": {
     "start": "npx http-server"
