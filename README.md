@@ -11,6 +11,31 @@ npm install
 npm run start
 ```
 
+## Available Examples
+
+This repository includes three example pages demonstrating different use cases of importOK:
+
+### 1. Basic Example (`index.html`)
+The main entry point showcasing a simple contact import wizard. This example demonstrates:
+- Basic field mapping (first name, last name, email, phone, country)
+- Field validation and transformation
+- Sample CSV file loading
+- Simple callback handling for imported records
+
+### 2. Multiple Resources (`example-multiple-resources.html`)
+A comprehensive example demonstrating how to handle different resource types in an e-commerce platform:
+- Resource selection cards (Products, Customers, Orders, Inventory)
+- Customized field configurations for each resource type
+- Modal-based importer interface
+- Resource-specific validations and transformers
+
+### 3. Wizard with Progress Bar (`example-wizard-progress-bar.html`)
+An enhanced import experience featuring a visual progress indicator:
+- Custom progress bar showing the current step (Upload → Map → Review → Import)
+- Visual step indicators with active state highlighting
+- Professional header and card-based layout
+- Integration of the wizard with custom UI components
+
 ## FAQs
 
 ### Why there is a limit of 20 records?

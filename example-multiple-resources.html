@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>importOK - Multiple Resources Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .modal-backdrop {
+      animation: fadeIn 0.2s ease-out;
+    }
+    .modal-content {
+      animation: fadeIn 0.3s ease-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+  <!-- Header -->
+  <header class="bg-white border-b shadow-sm border-slate-200">
+    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-slate-900">importOK</h1>
+          <p class="mt-1 text-sm text-slate-600">Example with multiple resources</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="inline-flex items-center px-3 py-1 text-xs font-medium text-blue-800 bg-blue-100 rounded-full">
+            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Demo Mode
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="mb-12 text-center">
+      <h2 class="mb-3 text-2xl font-semibold text-slate-900">Choose a Resource to Import</h2>
+      <p class="max-w-2xl mx-auto text-slate-600">Select the type of data you want to import into your e-commerce platform. Each importer is customized with relevant fields and validations.</p>
+    </div>
+
+    <!-- Resource Cards Grid -->
+    <div class="grid grid-cols-1 gap-6 mb-12 md:grid-cols-2 lg:grid-cols-4">
+      <!-- Products Card -->
+      <div class="overflow-hidden transition-all duration-300 bg-white border shadow-md cursor-pointer rounded-xl hover:shadow-xl border-slate-200 hover:border-blue-400 group" onclick="openImporter('products')">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4 transition-transform duration-300 rounded-lg w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 group-hover:scale-110">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-slate-900">Products</h3>
+          <p class="mb-4 text-sm text-slate-600">Import product catalog with SKU, pricing, inventory, and descriptions</p>
+          <div class="flex items-center text-sm font-medium text-blue-600">
+            <span>Start Import</span>
+            <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customers Card -->
+      <div class="overflow-hidden transition-all duration-300 bg-white border shadow-md cursor-pointer rounded-xl hover:shadow-xl border-slate-200 hover:border-green-400 group" onclick="openImporter('customers')">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4 transition-transform duration-300 rounded-lg w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 group-hover:scale-110">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-slate-900">Customers</h3>
+          <p class="mb-4 text-sm text-slate-600">Import customer data including contact info, addresses, and preferences</p>
+          <div class="flex items-center text-sm font-medium text-green-600">
+            <span>Start Import</span>
+            <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orders Card -->
+      <div class="overflow-hidden transition-all duration-300 bg-white border shadow-md cursor-pointer rounded-xl hover:shadow-xl border-slate-200 hover:border-purple-400 group" onclick="openImporter('orders')">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4 transition-transform duration-300 rounded-lg w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 group-hover:scale-110">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-slate-900">Orders</h3>
+          <p class="mb-4 text-sm text-slate-600">Import order history with items, totals, payment, and shipping details</p>
+          <div class="flex items-center text-sm font-medium text-purple-600">
+            <span>Start Import</span>
+            <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inventory Card -->
+      <div class="overflow-hidden transition-all duration-300 bg-white border shadow-md cursor-pointer rounded-xl hover:shadow-xl border-slate-200 hover:border-orange-400 group" onclick="openImporter('inventory')">
+        <div class="p-6">
+          <div class="flex items-center justify-center mb-4 transition-transform duration-300 rounded-lg w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 group-hover:scale-110">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+            </svg>
+          </div>
+          <h3 class="mb-2 text-xl font-semibold text-slate-900">Inventory</h3>
+          <p class="mb-4 text-sm text-slate-600">Import stock levels, warehouse locations, and inventory adjustments</p>
+          <div class="flex items-center text-sm font-medium text-orange-600">
+            <span>Start Import</span>
+            <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal Backdrop -->
+  <div id="modal-backdrop" class="fixed inset-0 z-40 hidden bg-black bg-opacity-50 modal-backdrop" onclick="closeModal()"></div>
+
+  <!-- Modal Container -->
+  <div id="modal-container" class="fixed inset-0 z-50 hidden overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden modal-content relative">
+        <!-- Close Button -->
+        <button onclick="closeModal()" class="absolute z-10 flex items-center justify-center w-10 h-10 transition-colors rounded-full top-4 right-4 bg-slate-100 hover:bg-slate-200">
+          <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <!-- ImportOK Container -->
+        <div id="importok-container" class="w-full h-full p-6 overflow-auto"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import ImportOK, { GenericProvider } from './node_modules/@importok/javascript/importok.js';
+
+    // Sample files for different resources
+    const sampleFiles = {
+      products: new File(
+        [
+          'sku,product_name,category,price,cost,stock_quantity,description,supplier,status' + "\n",
+          'PRD-001,Wireless Mouse,Electronics,29.99,15.50,150,Ergonomic wireless mouse with USB receiver,TechSupply Co,active' + "\n",
+          'PRD-002,Office Chair,Furniture,299.99,180.00,45,Adjustable office chair with lumbar support,ComfortFurn,active' + "\n",
+          'PRD-003,Notebook Set,Stationery,12.99,6.50,500,Set of 3 A5 lined notebooks,PaperGoods Ltd,active' + "\n",
+          'PRD-004,LED Desk Lamp,Electronics,45.99,25.00,80,Adjustable LED desk lamp with touch control,BrightLight Inc,active' + "\n",
+        ],
+        'products.csv',
+        { type: 'text/csv' }
+      ),
+      customers: new File(
+        [
+          'customer_id,first_name,last_name,email,phone,address,city,country,customer_type,join_date' + "\n",
+          '1001,Sarah,Johnson,sarah.j@email.com,+1-555-0123,123 Main St,New York,US,premium,2023-01-15' + "\n",
+          '1002,James,Williams,j.williams@email.com,+1-555-0124,456 Oak Ave,Los Angeles,US,regular,2023-03-22' + "\n",
+          '1003,Emma,Brown,emma.b@email.com,+44-20-1234-5678,789 High Street,London,GB,premium,2023-02-10' + "\n",
+          '1004,Michael,Davis,m.davis@email.com,+1-555-0125,321 Pine Rd,Chicago,US,regular,2023-04-05' + "\n",
+        ],
+        'customers.csv',
+        { type: 'text/csv' }
+      ),
+      orders: new File(
+        [
+          'order_id,customer_email,order_date,product_sku,quantity,unit_price,total_amount,payment_method,shipping_address,status' + "\n",
+          'ORD-5001,sarah.j@email.com,2024-01-10,PRD-001,2,29.99,59.98,credit_card,123 Main St New York US,completed' + "\n",
+          'ORD-5002,j.williams@email.com,2024-01-11,PRD-002,1,299.99,299.99,paypal,456 Oak Ave Los Angeles US,shipped' + "\n",
+          'ORD-5003,emma.b@email.com,2024-01-12,PRD-003,5,12.99,64.95,credit_card,789 High Street London GB,processing' + "\n",
+          'ORD-5004,m.davis@email.com,2024-01-13,PRD-004,1,45.99,45.99,credit_card,321 Pine Rd Chicago US,completed' + "\n",
+        ],
+        'orders.csv',
+        { type: 'text/csv' }
+      ),
+      inventory: new File(
+        [
+          'sku,warehouse_location,current_stock,minimum_stock,maximum_stock,reorder_point,last_updated,supplier_code' + "\n",
+          'PRD-001,Warehouse A,150,50,500,75,2024-01-15,SUP-001' + "\n",
+          'PRD-002,Warehouse B,45,20,200,30,2024-01-14,SUP-002' + "\n",
+          'PRD-003,Warehouse A,500,100,1000,150,2024-01-15,SUP-003' + "\n",
+          'PRD-004,Warehouse C,80,30,300,50,2024-01-13,SUP-001' + "\n",
+        ],
+        'inventory.csv',
+        { type: 'text/csv' }
+      )
+    };
+
+    // Configuration for each resource type
+    const resourceConfigs = {
+      products: {
+        title: 'Import Products',
+        subtitle: 'Upload your product catalog with pricing and inventory information',
+        fields: {
+          sku: {
+            label: 'SKU',
+            description: 'Unique product identifier',
+            validators: 'required',
+            transformers: 'uppercase|trim'
+          },
+          product_name: {
+            label: 'Product Name',
+            validators: 'required',
+            transformers: 'trim'
+          },
+          category: {
+            label: 'Category',
+            transformers: 'trim|capitalize',
+            validators: 'required'
+          },
+          price: {
+            label: 'Price',
+            description: 'Retail price in USD',
+            validators: 'required|numeric|min:0',
+            transformers: 'trim'
+          },
+          cost: {
+            label: 'Cost',
+            description: 'Cost price in USD',
+            validators: 'numeric|min:0',
+            transformers: 'trim'
+          },
+          stock_quantity: {
+            label: 'Stock Quantity',
+            validators: 'required|numeric|min:0',
+            transformers: 'trim'
+          },
+          description: {
+            label: 'Description',
+            transformers: 'trim'
+          },
+          supplier: {
+            label: 'Supplier',
+            transformers: 'trim'
+          },
+          status: {
+            label: 'Status',
+            validators: 'required|in:status_options',
+            transformers: 'lowercase|trim',
+            provider: 'status_options'
+          }
+        },
+        sampleFile: sampleFiles.products
+      },
+      customers: {
+        title: 'Import Customers',
+        subtitle: 'Upload customer information including contact details and addresses',
+        fields: {
+          customer_id: {
+            label: 'Customer ID',
+            description: 'Unique customer identifier',
+            validators: 'required',
+            transformers: 'trim'
+          },
+          first_name: {
+            label: 'First Name',
+            validators: 'required',
+            transformers: 'capitalize|trim'
+          },
+          last_name: {
+            label: 'Last Name',
+            validators: 'required',
+            transformers: 'capitalize|trim'
+          },
+          email: {
+            label: 'Email',
+            validators: 'required|email',
+            transformers: 'lowercase|trim'
+          },
+          phone: {
+            label: 'Phone',
+            validators: 'required',
+            transformers: 'trim'
+          },
+          address: {
+            label: 'Address',
+            transformers: 'trim'
+          },
+          city: {
+            label: 'City',
+            validators: 'required',
+            transformers: 'capitalize|trim'
+          },
+          country: {
+            label: 'Country',
+            description: '2-letter country code (e.g., US, GB)',
+            validators: 'required',
+            transformers: 'uppercase|trim'
+          },
+          customer_type: {
+            label: 'Customer Type',
+            validators: 'in:customer_types',
+            transformers: 'lowercase|trim',
+            provider: 'customer_types'
+          },
+          join_date: {
+            label: 'Join Date',
+            description: 'Date when customer joined (YYYY-MM-DD)',
+            transformers: 'trim'
+          }
+        },
+        sampleFile: sampleFiles.customers
+      },
+      orders: {
+        title: 'Import Orders',
+        subtitle: 'Upload order history with product details and payment information',
+        fields: {
+          order_id: {
+            label: 'Order ID',
+            description: 'Unique order identifier',
+            validators: 'required',
+            transformers: 'uppercase|trim'
+          },
+          customer_email: {
+            label: 'Customer Email',
+            validators: 'required|email',
+            transformers: 'lowercase|trim'
+          },
+          order_date: {
+            label: 'Order Date',
+            description: 'Date of order (YYYY-MM-DD)',
+            validators: 'required',
+            transformers: 'trim'
+          },
+          product_sku: {
+            label: 'Product SKU',
+            validators: 'required',
+            transformers: 'uppercase|trim'
+          },
+          quantity: {
+            label: 'Quantity',
+            validators: 'required|numeric|min:1',
+            transformers: 'trim'
+          },
+          unit_price: {
+            label: 'Unit Price',
+            validators: 'required|numeric|min:0',
+            transformers: 'trim'
+          },
+          total_amount: {
+            label: 'Total Amount',
+            validators: 'required|numeric|min:0',
+            transformers: 'trim'
+          },
+          payment_method: {
+            label: 'Payment Method',
+            validators: 'in:payment_methods',
+            transformers: 'lowercase|trim',
+            provider: 'payment_methods'
+          },
+          shipping_address: {
+            label: 'Shipping Address',
+            validators: 'required',
+            transformers: 'trim'
+          },
+          status: {
+            label: 'Order Status',
+            validators: 'in:order_statuses',
+            transformers: 'lowercase|trim',
+            provider: 'order_statuses'
+          }
+        },
+        sampleFile: sampleFiles.orders
+      },
+      inventory: {
+        title: 'Import Inventory',
+        subtitle: 'Upload stock levels and warehouse location information',
+        fields: {
+          sku: {
+            label: 'SKU',
+            description: 'Product SKU',
+            validators: 'required',
+            transformers: 'uppercase|trim'
+          },
+          warehouse_location: {
+            label: 'Warehouse Location',
+            validators: 'required',
+            transformers: 'trim'
+          },
+          current_stock: {
+            label: 'Current Stock',
+            validators: 'required|numeric|min:0',
+            transformers: 'trim'
+          },
+          minimum_stock: {
+            label: 'Minimum Stock',
+            description: 'Minimum stock level before reorder',
+            validators: 'numeric|min:0',
+            transformers: 'trim'
+          },
+          maximum_stock: {
+            label: 'Maximum Stock',
+            description: 'Maximum stock capacity',
+            validators: 'numeric|min:0',
+            transformers: 'trim'
+          },
+          reorder_point: {
+            label: 'Reorder Point',
+            description: 'Stock level that triggers reorder',
+            validators: 'numeric|min:0',
+            transformers: 'trim'
+          },
+          last_updated: {
+            label: 'Last Updated',
+            description: 'Date of last stock update (YYYY-MM-DD)',
+            transformers: 'trim'
+          },
+          supplier_code: {
+            label: 'Supplier Code',
+            transformers: 'uppercase|trim'
+          }
+        },
+        sampleFile: sampleFiles.inventory
+      }
+    };
+
+    // Generic providers for dropdown options
+    const providers = {
+      status_options: GenericProvider.fromArray(['active', 'inactive', 'discontinued']),
+      customer_types: GenericProvider.fromArray(['regular', 'premium', 'vip', 'wholesale']),
+      payment_methods: GenericProvider.fromArray(['credit_card', 'debit_card', 'paypal', 'bank_transfer', 'cash_on_delivery']),
+      order_statuses: GenericProvider.fromArray(['pending', 'processing', 'shipped', 'delivered', 'completed', 'cancelled', 'refunded'])
+    };
+
+    // Store reference to current wizard instance
+    let currentWizardInstance = null;
+
+    // Function to open importer with specific configuration
+    window.openImporter = function(resourceType) {
+      const config = resourceConfigs[resourceType];
+      if (!config) return;
+
+      const container = document.getElementById('importok-container');
+      const modalBackdrop = document.getElementById('modal-backdrop');
+      const modalContainer = document.getElementById('modal-container');
+
+      // Clear previous wizard instance if exists
+      container.innerHTML = '';
+      currentWizardInstance = null;
+
+      // Show modal
+      modalBackdrop.classList.remove('hidden');
+      modalContainer.classList.remove('hidden');
+
+      // Initialize importOK and store reference
+      currentWizardInstance = ImportOK.add(
+        container,
+        {
+          title: config.title,
+          subtitle: config.subtitle,
+          fields: config.fields,
+          providers: providers,
+          meta: {
+            resource_type: resourceType,
+            imported_by: 'demo_user'
+          },
+          onRecordReady: async function (record, meta) {
+            console.log(`Processing ${resourceType} record:`, record);
+
+            // Simulate processing delay
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            // Simulate random failures (5% failure rate)
+            if (Math.random() < 0.05) {
+              record.markAsRejected(`Processing error for ${resourceType} at row ${record.rowIndex + 1}`);
+            }
+          }
+        }
+      );
+    };
+
+    // Function to close modal
+    window.closeModal = function() {
+      const container = document.getElementById('importok-container');
+      const modalBackdrop = document.getElementById('modal-backdrop');
+      const modalContainer = document.getElementById('modal-container');
+
+      // Hide modal
+      modalBackdrop.classList.add('hidden');
+      modalContainer.classList.add('hidden');
+
+      // Safely clear the wizard by temporarily suppressing errors
+      setTimeout(() => {
+        try {
+          // Try to remove children one by one to trigger cleanup
+          while (container.firstChild) {
+            container.removeChild(container.firstChild);
+          }
+        } catch (e) {
+          // Silently handle any cleanup errors
+          console.warn('Wizard cleanup warning:', e.message);
+        }
+        currentWizardInstance = null;
+      }, 300);
+    };
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
